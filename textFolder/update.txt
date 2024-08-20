@@ -1,0 +1,19 @@
+For updating we use PATCH (HTTP Methods) and use route parameter or we can say URL parameter.
+
+Declare a variable [payload] for storing the data that we wanted to update.
+
+Declare a variable by the name of [noteId] for storing the note in which we wanted to make changes.
+
+Declare a variable by the name of [userId] for checking if that the user who has created or has access to a note can only update or make changes in that note.  
+
+Now find a that note in that noteModel in which we wanted to make changes.
+
+After finding the note, compare note.userId with equal to the userId. (Keep in mind to first convert userId's into a String before comparing.)
+
+If it is being compared and everything is fine. Then find findByIdAndUpdate that note in noteModel. 
+
+Like this 
+
+await noteModel.findByIdAndUpdate({_id: noteId}, payload)
+
+and if it is not being compared that means, the user who is being trying to update the note is not authorized or is trying to make changes in someone else note.    
