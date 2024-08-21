@@ -29,7 +29,7 @@ userRouter.post("/register", async (req, res) => {
 
     res.status(200).json({ msg: `User registered successfully` });
   } catch (error) {
-    res.status(404).json({ msg: `Error occured during registering user` });
+    res.status(404).json({ msg: `Error occured during registering user ${error}` });
   }
 });
 
