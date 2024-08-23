@@ -34,28 +34,18 @@ noteRouter.get("/", async (req, res) => {
 
 noteRouter.get("/id", async(req, res)=>{
   
-  const {_id, title, limit=4, page=1, status, q } = req.query;
+  const {_id} = req.query;
   
   try {
     const query = {};
 
     if(_id) query._id = _id;
-    if(title) query.title = new RegExp(title, "i");
-    if(status) query.status = status;
-    if(q) query.title = new RegExp(q, "i");
 
     const searchNote = await noteModel.find(query)
-    .limit(limit)
-    .skip((page-1)*limit)
-    .exec();
 
-    const totalNotes = await noteModel.countDocuments(query);
 
     res.status(200).json({
       searchNote,
-      currentPage: page,
-      totalNotes,
-      totalPages: Math.ceil(totalNotes/limit),
     })
 
   } catch (error) {
